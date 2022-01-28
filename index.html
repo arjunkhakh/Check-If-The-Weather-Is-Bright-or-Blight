@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+  ></script>
     <link rel="stylesheet" href="./assets/style.css">
     <title>Weather Dashboard</title>
 </head>
@@ -26,7 +30,17 @@
             <div id="temp" class="col-12 flex-column align-center bg-white p-1"></div>
             <div id="wind" class="col-12 flex-column align-center bg-white p-1"></div>
             <div id="humidity" class="col-12 flex-column align-center bg-white p-1"></div>
-            <div class="col-2 flex-column align-center bg-white p-1"><div id="uvi"></div></div>
+           
+            <div id="uvi-text" class="col-2 flex-column align-center bg-white p-1"> </div> <div id="uvi"></div>
+          
+            <div class="row">
+              <div id="weather-box1" class="col"> <div id="temp1"></div> <div id="wind1"></div> <div id="humidity1"></div> </div>
+              <div id="weather-box2" class="col"> <div id="temp2"></div> <div id="wind2"></div> <div id="humidity2"></div> </div>
+              <div id="weather-box3" class="col"> <div id="temp3"></div> <div id="wind3"></div> <div id="humidity3"></div> </div>
+              <div id="weather-box4" class="col"> <div id="temp4"></div> <div id="wind4"></div> <div id="humidity4"></div> </div>
+              <div id="weather-box5" class="col"> <div id="temp5"></div> <div id="wind5"></div> <div id="humidity5"></div> </div>
+            </div>
+
         </div>
 </div>
 </body>
