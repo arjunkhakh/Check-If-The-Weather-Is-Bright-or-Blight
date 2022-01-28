@@ -1,7 +1,11 @@
 var city = document.querySelector("#search-input")
 var submit = document.querySelector("#submit")
-var latInfo = document.querySelector("#lat-info")
-var lonInfo = document.querySelector("#lon-info")
+var destination = document.querySelector("#destination")
+var date = document.querySelector("#date")
+var temp = document.querySelector("#temp")
+var wind = document.querySelector("#wind")
+var humidity = document.querySelector("#humidity")
+var uvi = document.querySelector("#uvi")
 
 // var lat = 33.44;
 // var lon = -94.04;
@@ -24,11 +28,23 @@ var lonInfo = document.querySelector("#lon-info")
 
 // console.log(url2)
 
-
+function secondCall(url) {
+  fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        temp.textContent = "Temp: " + data.current.temp + "°F";
+        wind.textContent = "Wind Speed: " + data.current.wind_speed + "MPH";
+        humidity.textContent = "Humidity: " + data.current.humidity + "%";
+        uvi.textContent = "UV Index: " + data.current.uvi;
+      })
+}
 
 submit.addEventListener("click", function () {
     var cityInput = city.value;
-  
+    destination.textContent = city.value;
     var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
     // var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
 
@@ -42,9 +58,9 @@ submit.addEventListener("click", function () {
       var lon = data[0].lon
       console.log(lat);
       console.log(lon);
-
-      latInfo.textContent = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4"
-      // lonInfo.textContent = data[0].lon
+      var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
+     
+      secondCall(url1);
     });
 
     if (cityInput === false) {
