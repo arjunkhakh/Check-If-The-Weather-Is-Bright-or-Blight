@@ -42,6 +42,14 @@ function secondCall(url) {
       })
 }
 
+if (uvi.textContent <= 0.50) {
+  uvi.setAttribute("style", "background-color:lightgreen")
+} else if (uvi.textContent <= 0.75) {
+  uvi.setAttribute("style", "background-color:yellow")
+} else {
+  uvi.setAttribute("style", "background-color:red")
+}
+
 submit.addEventListener("click", function () {
     var cityInput = city.value;
     destination.textContent = city.value;
