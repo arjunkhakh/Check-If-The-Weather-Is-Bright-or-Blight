@@ -34,6 +34,12 @@ var weatherBox3 = document.querySelector("#weather-box3")
 var weatherBox4 = document.querySelector("#weather-box4")
 var weatherBox5 = document.querySelector("#weather-box5")
 
+var day1 = document.querySelector("#day1")
+var day2 = document.querySelector("#day2")
+var day3 = document.querySelector("#day3")
+var day4 = document.querySelector("#day4")
+var day5 = document.querySelector("#day5")
+
 // var lat = 33.44;
 // var lon = -94.04;
 
@@ -98,11 +104,11 @@ function secondCall(url) {
         wind5.textContent = "Wind Speed: " + data.daily[4].wind_speed + "MPH";
         humidity5.textContent = "Humidity: " + data.daily[4].humidity + "%";
 
-        weatherBox1.setAttribute("style", "background-color:lightblue; border-radius:15px")
-        weatherBox2.setAttribute("style", "background-color:lightgrey; border-radius:15px")
-        weatherBox3.setAttribute("style", "background-color:lightpink; border-radius:15px")
-        weatherBox4.setAttribute("style", "background-color:lightgrey; border-radius:15px")
-        weatherBox5.setAttribute("style", "background-color:lightgreen; border-radius:15px")
+        weatherBox1.setAttribute("style", "background-color:lightblue; border-radius:10px; margin-top:3px")
+        weatherBox2.setAttribute("style", "background-color:lightgrey; border-radius:10px; margin-top:3px")
+        weatherBox3.setAttribute("style", "background-color:lightpink; border-radius:10px; margin-top:3px")
+        weatherBox4.setAttribute("style", "background-color:lightgrey; border-radius:10px; margin-top:3px")
+        weatherBox5.setAttribute("style", "background-color:lightgreen; border-radius:10px; margin-top:3px")
       })
 }
 
@@ -111,6 +117,11 @@ function secondCall(url) {
 submit.addEventListener("click", function () {
     var cityInput = city.value;
     destination.textContent = city.value + " - " + moment().format("DD/MM/YY");
+    day1.textContent = moment().add(1,'days').format("DD/MM/YY");
+    day2.textContent = moment().add(2,'days').format("DD/MM/YY");
+    day3.textContent = moment().add(3,'days').format("DD/MM/YY");
+    day4.textContent = moment().add(4,'days').format("DD/MM/YY");
+    day5.textContent = moment().add(5,'days').format("DD/MM/YY");
     
     var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
     // var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
