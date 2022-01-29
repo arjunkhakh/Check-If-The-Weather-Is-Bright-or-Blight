@@ -134,8 +134,39 @@ function getLocalStorage() {
   cityEL.textContent = item;
   document.getElementById("list").appendChild(cityEL)
 
-  cityEL.setAttribute("style", "list-style-type:none; margin:10px;background-color:cyan; border-radius:10px; padding-left:150px; padding-right:150px")
-  
+  cityEL.setAttribute("style", "list-style-type:none; margin:10px;background-color:cyan; border-radius:10px; padding-left:130px; padding-right:130px")
+
+  cityEL.addEventListener("click", function name(params) {
+    var cityInput = item;
+    destination.textContent = item + " - " + moment().format("DD/MM/YY");
+    day1.textContent = moment().add(1,'days').format("DD/MM/YY");
+    day2.textContent = moment().add(2,'days').format("DD/MM/YY");
+    day3.textContent = moment().add(3,'days').format("DD/MM/YY");
+    day4.textContent = moment().add(4,'days').format("DD/MM/YY");
+    day5.textContent = moment().add(5,'days').format("DD/MM/YY");
+    
+    var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
+    // var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
+
+
+    fetch(url2)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var lat = data[0].lat
+      var lon = data[0].lon
+      console.log(lat);
+      console.log(lon);
+      var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
+     
+      secondCall(url1);
+    });
+
+    if (!cityInput) {
+        alert("Please put in a city!");
+    }
+  })
 }
 
 
