@@ -127,7 +127,15 @@ function secondCall(url) {
 function getLocalStorage() {
   localStorage.setItem("search-input", city.value);
 
-  localStorage.getItem("search-input", city.value)
+  var item = localStorage.getItem("search-input", city.value)
+
+ 
+  var cityEL = document.createElement("button")
+  cityEL.textContent = item;
+  document.getElementById("list").appendChild(cityEL)
+
+  cityEL.setAttribute("style", "list-style-type:none; margin:10px;background-color:cyan; border-radius:10px; padding-left:150px; padding-right:150px")
+  
 }
 
 
@@ -159,8 +167,8 @@ submit.addEventListener("click", function () {
       getLocalStorage();
     });
 
-    if (cityInput === false) {
-        alert("Please put in a different city");
+    if (!cityInput) {
+        alert("Please put in a city!");
     }
   })
 
