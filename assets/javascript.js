@@ -160,9 +160,9 @@ function getLocalStorage() {
     day4.textContent = moment().add(4,'days').format("DD/MM/YY");
     day5.textContent = moment().add(5,'days').format("DD/MM/YY");
     
-    var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
+    // var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
 
-    fetch(url2)
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4")
     .then(function (response) {
       return response.json();
     })
@@ -193,9 +193,9 @@ submit.addEventListener("click", function () {
     day4.textContent = moment().add(4,'days').format("DD/MM/YY");
     day5.textContent = moment().add(5,'days').format("DD/MM/YY");
     
-    var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
+    // var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
 
-    fetch(url2)
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4")
     .then(function (response) {
       return response.json();
     })
