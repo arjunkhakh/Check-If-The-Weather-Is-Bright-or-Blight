@@ -116,11 +116,38 @@ function secondCall(url) {
         weatherBox4.setAttribute("style", "background-color:lightgrey; border-radius:10px; margin-top:3px")
         weatherBox5.setAttribute("style", "background-color:lightgreen; border-radius:10px; margin-top:3px")
 
-        icon1.textContent = data.daily[0].weather[0].icon;
-        icon2.textContent = data.daily[1].weather[0].icon;
-        icon3.textContent = data.daily[2].weather[0].icon;
-        icon4.textContent = data.daily[3].weather[0].icon;
-        icon5.textContent = data.daily[4].weather[0].icon;
+        var img1 = data.daily[0].weather[0].icon;
+        var img2 = data.daily[1].weather[0].icon;
+        var img3 = data.daily[2].weather[0].icon;
+        var img4 = data.daily[3].weather[0].icon;
+        var img5 = data.daily[4].weather[0].icon;
+
+   
+
+        // icon1.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img1 + ".png' alt='Icon depicting current weather.'>"//
+        // icon2.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img2 + ".png' alt='Icon depicting current weather.'>"//
+        // icon3.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img3 + ".png' alt='Icon depicting current weather.'>"//
+        // icon4.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img4 + ".png' alt='Icon depicting current weather.'>"//
+        // icon5.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img5 + ".png' alt='Icon depicting current weather.'>"// 
+
+        
+        var imageURL1 = "http://openweathermap.org/img/w/" + img1 + ".png"
+        icon1.setAttribute("src", imageURL1)
+
+        var imageURL2 = "http://openweathermap.org/img/w/" + img2 + ".png"
+        icon2.setAttribute("src", imageURL2)
+
+        var imageURL3 = "http://openweathermap.org/img/w/" + img3 + ".png"
+        icon3.setAttribute("src", imageURL3)
+
+        var imageURL4 = "http://openweathermap.org/img/w/" + img4 + ".png"
+        icon4.setAttribute("src", imageURL4)
+
+        var imageURL5 = "http://openweathermap.org/img/w/" + img5 + ".png"
+        icon5.setAttribute("src", imageURL5)
+          
+        
+       
       })
 }
 
