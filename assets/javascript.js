@@ -218,4 +218,5 @@ submit.addEventListener("click", function () {
  // Prevent Refresh When Enter is pressed in form
  document.keypress(function(e) { 
   return e.keyCode != 13;
+  event.preventDefault();
 });
