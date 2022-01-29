@@ -213,8 +213,9 @@ submit.addEventListener("click", function () {
         alert("Please put in a city!");
     }
   })
- 
-  // Prevent Refresh When Enter is pressed
-document.keypress(function(e) { 
-    return e.keyCode != 13;
+
+
+ // Prevent Refresh When Enter is pressed in form
+ document.keypress(function(e) { 
+  return e.keyCode != 13;
 });
