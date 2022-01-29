@@ -40,6 +40,12 @@ var day3 = document.querySelector("#day3")
 var day4 = document.querySelector("#day4")
 var day5 = document.querySelector("#day5")
 
+var icon1 = document.querySelector("#icon1")
+var icon2 = document.querySelector("#icon2")
+var icon3 = document.querySelector("#icon3")
+var icon4 = document.querySelector("#icon4")
+var icon5 = document.querySelector("#icon5")
+
 // var lat = 33.44;
 // var lon = -94.04;
 
@@ -109,9 +115,20 @@ function secondCall(url) {
         weatherBox3.setAttribute("style", "background-color:lightpink; border-radius:10px; margin-top:3px")
         weatherBox4.setAttribute("style", "background-color:lightgrey; border-radius:10px; margin-top:3px")
         weatherBox5.setAttribute("style", "background-color:lightgreen; border-radius:10px; margin-top:3px")
+
+        icon1.textContent = data.daily[0].weather[0].icon;
+        icon2.textContent = data.daily[1].weather[0].icon;
+        icon3.textContent = data.daily[2].weather[0].icon;
+        icon4.textContent = data.daily[3].weather[0].icon;
+        icon5.textContent = data.daily[4].weather[0].icon;
       })
 }
 
+function getLocalStorage() {
+  localStorage.setItem("search-input", city.value);
+
+  localStorage.getItem("search-input", city.value)
+}
 
 
 submit.addEventListener("click", function () {
@@ -139,6 +156,7 @@ submit.addEventListener("click", function () {
       var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
      
       secondCall(url1);
+      getLocalStorage();
     });
 
     if (cityInput === false) {
