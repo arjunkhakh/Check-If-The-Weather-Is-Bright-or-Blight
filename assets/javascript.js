@@ -1,3 +1,5 @@
+// Variables Defined Here
+// Variables for the start menu and weather for the current date
 var city = document.querySelector("#search-input")
 var submit = document.querySelector("#submit")
 var destination = document.querySelector("#destination")
@@ -7,6 +9,8 @@ var wind = document.querySelector("#wind")
 var humidity = document.querySelector("#humidity")
 var uvi = document.querySelector("#uvi")
 var uviText = document.querySelector("#uvi-text")
+
+// Weather Variables for the 5-Day Forecast
 
 var temp1 = document.querySelector("#temp1")
 var wind1 = document.querySelector("#wind1")
@@ -34,46 +38,29 @@ var weatherBox3 = document.querySelector("#weather-box3")
 var weatherBox4 = document.querySelector("#weather-box4")
 var weatherBox5 = document.querySelector("#weather-box5")
 
+// Dates for the 5 Day Forecast
+
 var day1 = document.querySelector("#day1")
 var day2 = document.querySelector("#day2")
 var day3 = document.querySelector("#day3")
 var day4 = document.querySelector("#day4")
 var day5 = document.querySelector("#day5")
 
+// Weather Icons for the 5 day Forecast
 var icon1 = document.querySelector("#icon1")
 var icon2 = document.querySelector("#icon2")
 var icon3 = document.querySelector("#icon3")
 var icon4 = document.querySelector("#icon4")
 var icon5 = document.querySelector("#icon5")
 
-// var lat = 33.44;
-// var lon = -94.04;
-
-// var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
-// + "&appid=" + apikey
-
-// fetch(url)
-// .then(function () {
-//     console.log(url)
-// })
-
-
-// console.log(url1)
-
-// var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
-
-// get the city from the input which can then will print the lat and lon from that city array which can be put in url1
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-
-// console.log(url2)
-
+// A Function that fetches all the data needed for the Weather Dashboard.
 function secondCall(url) {
+  // Includes all values for the weather, for when the uvi value gets to a certain figure it will change colour
   fetch(url)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         temp.textContent = "Temp: " + data.current.temp + "°F";
         wind.textContent = "Wind Speed: " + data.current.wind_speed + "MPH";
         humidity.textContent = "Humidity: " + data.current.humidity + "%";
@@ -89,6 +76,8 @@ function secondCall(url) {
         } else {
           uvi.setAttribute("style", "background-color:red; padding:2px; border: 1px solid black; margin:0px; clear:both; display: inline-block; overflow: hidden;white-space: nowrap;")
         }
+
+        // Includes Values and Icon Data for the 5-Day Forecast and styling each weather box
 
         temp1.textContent = "Temp: " + data.daily[0].temp.day + "°F";
         wind1.textContent = "Wind Speed: " + data.daily[0].wind_speed + "MPH";
@@ -116,20 +105,14 @@ function secondCall(url) {
         weatherBox4.setAttribute("style", "background-color:lightgrey; border-radius:10px; margin-top:3px")
         weatherBox5.setAttribute("style", "background-color:lightgreen; border-radius:10px; margin-top:3px")
 
+
+        // Fetching the icon code needed and putting into the img source on the HTML
+
         var img1 = data.daily[0].weather[0].icon;
         var img2 = data.daily[1].weather[0].icon;
         var img3 = data.daily[2].weather[0].icon;
         var img4 = data.daily[3].weather[0].icon;
         var img5 = data.daily[4].weather[0].icon;
-
-   
-
-        // icon1.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img1 + ".png' alt='Icon depicting current weather.'>"//
-        // icon2.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img2 + ".png' alt='Icon depicting current weather.'>"//
-        // icon3.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img3 + ".png' alt='Icon depicting current weather.'>"//
-        // icon4.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img4 + ".png' alt='Icon depicting current weather.'>"//
-        // icon5.innerHTML = "<img src=\"http://openweathermap.org/img/w/" + img5 + ".png' alt='Icon depicting current weather.'>"// 
-
         
         var imageURL1 = "http://openweathermap.org/img/w/" + img1 + ".png"
         icon1.setAttribute("src", imageURL1)
@@ -146,11 +129,15 @@ function secondCall(url) {
         var imageURL5 = "http://openweathermap.org/img/w/" + img5 + ".png"
         icon5.setAttribute("src", imageURL5)
           
+
+        // Header for the 5-Day Forecast
+        document.querySelector("#weatherHeader").textContent = "5-Day Forecast"
         
        
       })
 }
 
+// A Function to get ande store the Local Storage items which will be placed onto the page
 function getLocalStorage() {
   localStorage.setItem("search-input", city.value);
 
@@ -161,9 +148,10 @@ function getLocalStorage() {
   cityEL.textContent = item;
   document.getElementById("list").appendChild(cityEL)
 
-  cityEL.setAttribute("style", "list-style-type:none; margin:10px;background-color:cyan; border-radius:10px; padding-left:130px; padding-right:130px")
+  cityEL.setAttribute("style", "list-style-type:none; margin:10px;background-color:cyan; border-radius:10px; padding-left:100px; padding-right:100px")
 
-  cityEL.addEventListener("click", function name(params) {
+  // This Event Listener creates a button for each input into the input box and can be clicked on which will load that clicked city information again
+  cityEL.addEventListener("click", function () {
     var cityInput = item;
     destination.textContent = item + " - " + moment().format("DD/MM/YY");
     day1.textContent = moment().add(1,'days').format("DD/MM/YY");
@@ -173,8 +161,6 @@ function getLocalStorage() {
     day5.textContent = moment().add(5,'days').format("DD/MM/YY");
     
     var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
-    // var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
-
 
     fetch(url2)
     .then(function (response) {
@@ -183,8 +169,6 @@ function getLocalStorage() {
     .then(function (data) {
       var lat = data[0].lat
       var lon = data[0].lon
-      console.log(lat);
-      console.log(lon);
       var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
      
       secondCall(url1);
@@ -193,10 +177,13 @@ function getLocalStorage() {
     if (!cityInput) {
         alert("Please put in a city!");
     }
+
   })
 }
 
-
+// The Submit Button when a city is inputted into the box, it fetches the input and places it into url2 which gives us the lat and lon of the city
+// With the Lat and Lon of the city, we can call the SecondCall function which prints out all the array information
+// It also calls the Local Storage function which puts all the items into local storage and put it into buttons
 submit.addEventListener("click", function () {
     var cityInput = city.value;
     destination.textContent = city.value + " - " + moment().format("DD/MM/YY");
@@ -207,8 +194,6 @@ submit.addEventListener("click", function () {
     day5.textContent = moment().add(5,'days').format("DD/MM/YY");
     
     var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
-    // var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
-
 
     fetch(url2)
     .then(function (response) {
@@ -217,27 +202,14 @@ submit.addEventListener("click", function () {
     .then(function (data) {
       var lat = data[0].lat
       var lon = data[0].lon
-      console.log(lat);
-      console.log(lon);
+     
       var url1 = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=ac98c55c210b923152b89481865ac9b4")
      
       secondCall(url1);
       getLocalStorage();
     });
-
+    // If The Input Box is empty then it warns the user to put a city in
     if (!cityInput) {
         alert("Please put in a city!");
     }
   })
-
-
-// var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
-// fetch(url2)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data[0].lat);
-//     console.log(data[0].lon);
-//   });
-
