@@ -61,7 +61,9 @@ function secondCall(url) {
         return response.json();
       })
       .then(function (data) {
-        temp.textContent = "Temp: " + data.current.temp + "°F";
+        var temperatureData = (data.current.temp - 273.15).toFixed(2);
+
+        temp.textContent = "Temp: " + temperatureData + "°C";
         wind.textContent = "Wind Speed: " + data.current.wind_speed + "MPH";
         humidity.textContent = "Humidity: " + data.current.humidity + "%";
         uvi.textContent = data.current.uvi;
@@ -133,7 +135,7 @@ function secondCall(url) {
         // Header for the 5-Day Forecast
         document.querySelector("#weatherHeader").textContent = "5-Day Forecast"
         
-       
+       console.log(data)
       })
 }
 
@@ -207,6 +209,7 @@ submit.addEventListener("click", function () {
      
       secondCall(url1);
       getLocalStorage();
+      
     });
     // If The Input Box is empty then it warns the user to put a city in
     if (!cityInput) {
