@@ -61,6 +61,7 @@ function secondCall(url) {
         return response.json();
       })
       .then(function (data) {
+        // Convert Kelvin to Celsius
         var temperatureData = (data.current.temp - 273.15).toFixed(2);
 
         temp.textContent = "Temp: " + temperatureData + "°C";
@@ -161,8 +162,6 @@ function getLocalStorage() {
     day3.textContent = moment().add(3,'days').format("DD/MM/YY");
     day4.textContent = moment().add(4,'days').format("DD/MM/YY");
     day5.textContent = moment().add(5,'days').format("DD/MM/YY");
-    
-    // var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
 
     fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4")
     .then(function (response) {
@@ -193,9 +192,7 @@ submit.addEventListener("click", function () {
     day2.textContent = moment().add(2,'days').format("DD/MM/YY");
     day3.textContent = moment().add(3,'days').format("DD/MM/YY");
     day4.textContent = moment().add(4,'days').format("DD/MM/YY");
-    day5.textContent = moment().add(5,'days').format("DD/MM/YY");
-    
-    // var url2 = ("http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4") 
+    day5.textContent = moment().add(5,'days').format("DD/MM/YY"); 
 
     fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&limit=1&appid=ac98c55c210b923152b89481865ac9b4")
     .then(function (response) {
